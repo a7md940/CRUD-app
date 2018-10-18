@@ -3,8 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
-};
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyA5VsPK4vCS0qSjBAFgJA1HFOIt5Sim_7k",
+    authDomain: "crudtask.firebaseapp.com",
+    databaseURL: "https://crudtask.firebaseio.com",
+    projectId: "crudtask",
+    storageBucket: "crudtask.appspot.com",
+    messagingSenderId: "444359270630"
+  }
+  };
+
 
 /*
  * In development mode, to ignore zone related error stack frames such as

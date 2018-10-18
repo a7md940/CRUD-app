@@ -1,0 +1,196 @@
+.table-responsive-xl table{
+
+    padding:0px;
+    width: 100%;
+    background: #dfdfde;
+    margin-top: 20px;
+    margin-bottom:20px;
+}
+.table-responsive-xl thead{
+    background:white;
+}
+.table-responsive-xl tr{
+    text-align: center;
+    padding:0px;
+
+}
+
+.table-responsive-xl td,.table-responsive-xl th{
+    padding: 10px 5px;
+    font-size:12px;
+    position: relative;
+}
+
+.table-responsive-xl tr > div{
+    width: 100%;
+    position: relative;
+    left:0px;
+}
+
+.table-responsive-xl tbody:nth-of-type(even){
+    background: white;
+}
+.table-responsive-xl tbody:nth-of-type(odd){
+    background: #f7f7f6;
+}
+
+.table-responsive-xl table:nth-of-type(1) input{
+    width:100px;
+}
+
+#options{
+    text-align: center;
+}
+
+#options button{
+    margin-left: 10px;
+}
+
+/** start buttons **/
+.table-responsive-xl button{
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 5px 15px;
+    font-weight: 600;
+    border-radius: 5px;
+}
+.add{
+    background: #31d316;
+}
+
+.add:hover{
+    background: #229e0d;
+}
+.delete{
+    background: #d31616;
+}
+
+.delete:hover{
+    background: #9e0d0d;
+}
+
+.edit{
+    background: #58bbdd;
+}
+
+.edit:hover{
+    background: #3f97b1;
+}
+
+.submit{
+    background: #efac50;
+}
+
+.cancel{
+    background:#337bbb;
+    margin-left: 10px;
+}
+/** end buttons **/
+
+.confirm-delete{
+    position: absolute;
+    width: 253px;
+    top: 58px;
+    z-index:10;
+}
+
+.confirm-delete::after{
+    content:'';
+    border-right: transparent solid 15px;
+    border-left: transparent solid 15px;
+    border-top: transparent solid 15px;
+    border-bottom: #FAEBCC solid 15px;
+    position: relative;
+    left: 14%;
+    top: -141px;
+    transform: translateX(-50%);
+}
+
+/** start add product form **/
+
+#add-product{
+    width: 500px;
+    margin: 0 auto;
+}
+
+#add-product h1{
+    text-align: center;
+}
+#add-product > div{
+    margin: 5px 0px;
+}
+#add-product > div:not(:last-child){
+    display:flex;
+    justify-content: space-between;
+}
+
+#add-product > div input{
+    flex-basis: 80%;
+    padding: 5px;
+}
+
+#add-product > div[required]{
+    position: relative;
+}
+
+#add-product > div[required]::after{
+    content:'*';
+    color:red;
+    position: absolute;
+    right: -15px;
+    transform: translateY(-50%);
+    top: 50%;
+}
+
+/** end add product form **/
+
+/** showing image in large mood **/
+.imgShow{
+    position: fixed;
+    top:0px;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    z-index: 10;
+    background: rgba(0,0,0,.5);
+    transition: .3s all ease-in-out;
+}
+
+.image-container{
+    width: 50%;;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+
+.image{
+    width:300px;
+    margin: 0 auto;
+    position: relative;
+    button{
+    position: absolute;
+    outline: none;
+    right: -55px;
+    top: -37px;
+    background: transparent;
+    color: white;
+    border-radius: 50%;
+    border: 2px solid white;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    padding: 0px;
+
+    &:focus{
+        outline: none;
+    }
+ 
+    
+    }
+}
+
+.image img{
+    width:100%;
+}

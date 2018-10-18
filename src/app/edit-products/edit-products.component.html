@@ -1,0 +1,74 @@
+<div class="table-responsive-xl">
+  <table class="table tables-striped">
+
+    <thead>
+        <tr>
+
+            <th>SKU</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Date</th>
+            <th>image</th>
+            <th>Options</th>
+          </tr>
+    </thead>
+
+    <tbody *ngFor="let product of Products | async">
+
+      <tr >
+          <td>{{ product.sku }}</td>
+          <td>{{ product.name}}</td>
+          <td>{{ product.category }}</td>
+          <td>{{ product.price }}</td>
+          <td>{{ product.date }}</td>
+          <td><img *ngIf="product.imageUrl"(click)="show(product)" style="width:80px" src="{{ product.imageUrl }}" /></td>
+          <td id="options">
+            <button class="edit" (click)="updateProduct(product)">Edit</button>
+            <button class="delete" (click)="deleteProduct(product)">Delete</button>
+            <div *ngIf="showDeleteConfirmationModal && productWantToDelete.id == product.id" class="confirm-delete">
+                <div class="alert alert-warning">
+                  <p><span>are you sure to delete this product.. ?</span></p>
+                  <button (click)="deleteConfirm(product)" type="button" class="btn btn-danger">Delete</button>
+                  <button (click)="deleteCancel()" type="button" class="btn btn-danger">Cancel</button>
+                </div>
+             </div>
+          </td>
+  
+      </tr>
+
+      <!-- Modal -->
+      <div *ngIf="showImage && editedProduct.imageUrl == product.imageUrl" class="imgShow">
+
+        <div class="image-container">
+          <div class="image" >
+            <img src="{{ editedProduct.imageUrl }}">
+            <button (click)="hide()" class="rubberBand animated">exit</button>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <tr *ngIf="editProductForm && editedProduct.imageUrl == product.imageUrl">
+
+          <td><input type="text" name="sku" [(ngModel)]="editedProduct.sku" placeholder="{{ editedProduct.sku }}"></td>
+          <td><input type="text" name="name" [(ngModel)]="editedProduct.name" placeholder="{{ editedProduct.name }}"></td>
+          <td><input type="text" name="category" [(ngModel)]="editedProduct.category" placeholder="{{ editedProduct.category }}"></td>
+          <td><input type="number" name="price" [(ngModel)]="editedProduct.price" placeholder="{{ editedProduct.price }}"></td>
+          <td><input type="date" name="date" [(ngModel)]="editedProduct.date" placeholder="{{ editedProduct.date }}"></td>
+
+          <td><input type="file" (change)="uploadNewImage($event)" name="imageUrl" [(ngModel)]="editedProduct.imageUrl"></td>
+
+          <td id="options">
+            <button class="submit" (click)="update(editedProduct)">Submit</button>
+            <button class="cancel" (click)="cancel()">Cancel</button>
+          </td>
+  
+      </tr>
+    </tbody>
+  
+  
+   
+  </table>
+</div>

@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-md-6">
+
+    <form #f="ngForm" (ngSubmit)="save(f.value)">      
+      <div class="form-group">
+        <label for="exampleInputPassword2">Name</label>
+        <input #name="ngModel" ngModel name="name" type="text" class="form-control" id="exampleInputPassword2" placeholder="Enter the product name">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">SKU</label>
+        <input #sku="ngModel" ngModel name="sku" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter SKU Code">
+      </div>
+    
+        <div class="form-group">
+          <label for="image-url">Image URL</label>
+          <input [(ngModel)]="imageUrl" name="imageUrl" type="file" (change)="photoSelected($event)" class="form-control" id="image-url" >
+        </div>
+    
+        <div class="form-group">
+          <label for="category">Category</label>
+          <select #category="ngModel" ngModel name="category" id="category" class="form-control" placeholder="chose the category">
+              <option></option>
+              <option *ngFor="let c of categories$ | async" value="{{c.name}}">{{c.name}}</option>
+          </select>
+        </div>
+    
+        <div class="form-group">
+          <label for="price">Price</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">$</span>
+            </div>
+            <input #price="ngModel" ngModel name="price" type="number" class="form-control" id="price">
+          </div>
+        </div>
+    
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input #date="ngModel" ngModel name="date" type="date" class="form-control" id="date">
+        </div>
+    
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+  </div>
+
+  <!-- coloumn 2 -->
+  <div class="col-md-6">
+      <div *ngIf="name.value"class="card" style="width: 25rem; margin: 0 auto; box-shadow:0px 0px 11px 0px rgba(0, 0, 0, 0.3)">
+          <img *ngIf="showImage" class="card-img-top" [src]="imageUrl" alt="">
+          <div class="card-body">
+            <h5 class="card-title display-4 font-weight-bold" >{{name.value}}</h5>
+            <p class="card-text">{{ sku.value }}</p>
+            <p class="card-text">{{ category.value }}</p>
+            <p class="card-text">{{ price.value | currency:'USD':true }}</p>
+            <p class="card-text">{{ date.value }}</p>
+
+          </div>
+        </div>
+  </div>
+</div>
