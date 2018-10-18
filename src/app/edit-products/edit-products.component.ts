@@ -54,16 +54,23 @@ export class EditProductsComponent implements OnInit {
 
   }
 
+
+
+  updateProduct(product){
+    this.editProductForm = true;
+    this.editedProduct = product;
+  
+  }
+
   uploadNewImage(event){
     console.log("this.editedProduct.imageUrl" + this.editedProduct.imageUrl)
 
-
-
       const file = event.target.files[0];
-      console.log(file.name+' '+file.type);
       const metaData = {'contentType': file.type};
+
+      console.log(file.name+' '+file.type);
+
       const storageRef = firebase.storage().ref();
-  
       const imageFromStorage = storageRef.child('products/' + file.name);
 
       imageFromStorage.put(file,metaData).then( ()=>{
@@ -73,16 +80,8 @@ export class EditProductsComponent implements OnInit {
         console.log(this.editedProduct.imageUrl)
        }).catch( err => console.log('the error ' +err));
       });
-
-
-
   }
-
-  updateProduct(product){
-    this.editProductForm = true;
-    this.editedProduct = product;
   
-  }
   update(product){
     this._productService.update(product);
     // console.log(product)

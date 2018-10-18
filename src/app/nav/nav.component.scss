@@ -1,0 +1,26 @@
+@import '../global-scss/mixins.scss';
+
+nav{
+
+    @include mobile {
+        display: flex;
+        flex-direction: column;
+        & > a{
+            font-size: 3rem;
+            font-weight: 600;
+
+        }
+        #links{
+            ul{
+                margin: 0px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+
+                li{
+                    margin:0 5px;
+                }
+            }
+        }
+    }
+}

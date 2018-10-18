@@ -1,6 +1,7 @@
-/* grid */
+/* import mixins */
+@import '../global-scss/mixins.scss';
+/* import mixins */
 
-/* end grid */
 
 /** showing image in large mood **/
 /***************** ***************/
@@ -39,6 +40,7 @@
     .table-filter {
         background-color: #fff;
         border-bottom: 1px solid #eee;
+        padding-left: 20px;
     }
     .table-filter tbody tr:hover {
         background-color: #f5f5f5;
@@ -58,21 +60,22 @@
         width: 35px;
     }
 
-
+ 
     .table-filter .media-photo {
         width: 133px;
     }
     .table-filter .media-body {
         display: block;
-        /* Had to use this style to force the div to expand (wasn't necessary with my bootstrap version 3.3.6) */
+        padding-left: 20px;        /* Had to use this style to force the div to expand (wasn't necessary with my bootstrap version 3.3.6) */
     }
     .table-filter .media-meta {
         font-size: 11px;
         color: #999;
+        font-weight: bolder;
     }
     .table-filter .media .title {
         color: #2BBCDE;
-        font-size: 30px;
+        font-size: 55px;
         font-weight: bold;
         line-height: normal;
         margin: 0;
@@ -93,5 +96,169 @@
     }
     .table-filter .media .summary {
         font-size: 18px;
-        margin-bottom:-2px
+        margin-bottom:5px;
+        margin-top:5px;
+        position: relative;
+        padding-top: 17px;
+
+        span{
+            position: absolute;
+            top:-2px;
+            left:0px;
+            font-weight: bolder;
+            font-size: 14px;
+        }
     }
+
+    @include mobile{
+        .media{
+            flex-direction: column;
+            position: relative;
+
+            & > a {
+                width:100%;
+            }
+            .media-photo{
+                width:100%;
+            }
+
+            .media-body{
+
+                width: 100%;
+                .title{
+
+                }
+                .media-meta{
+                    display:block;
+                }
+            }
+        }
+
+        .tag{
+            position: absolute !important;
+            top: 235px;
+            right: 0px;
+        }
+        
+        .media-meta{
+            text-align: right;
+        }
+    }
+
+    @include fromMidToLarge{
+
+        tbody{
+            display: flex !important;
+            justify-content: row !important;
+        }
+        .tag{
+            position: absolute !important;
+            right: 0px;
+            top: 0px;
+            height: 4.5em !important;
+            line-height: 4.5em !important;
+            &::after{
+                display:none;
+            }
+            &::before{
+                display:none;
+            }
+
+            span{
+                font-size: 59px;
+                padding-left: 0.5em;
+                padding-right: 0.5em;
+            }
+        }
+
+        .media-meta{
+            display:block;
+            text-align: right;
+        }
+    }
+
+$tag-background-color: #9e9e9e;
+$tag-border-radius: .15em;
+$tag-shadow-offset-x: .2em;
+$tag-shadow-offset-y: .2em;
+$tag-shadow-lightness: -15%;
+$tag-shadow-blur: 0;
+$tag-height: 2.5em;
+$tag-hole-diameter: .6em;
+
+@mixin tag-color($tag-color: $tag-background-color) {
+  background-color: $tag-color;
+  filter: drop-shadow($tag-shadow-offset-x $tag-shadow-offset-y $tag-shadow-blur scale-color($tag-color, $lightness: $tag-shadow-lightness));
+  
+  &::before {
+    border-right-color: $tag-color;
+  }
+  
+  &::after {
+    box-shadow: inset $tag-shadow-offset-x $tag-shadow-offset-y $tag-shadow-blur scale-color($tag-color, $lightness: $tag-shadow-lightness);
+  }
+}
+
+.tag {
+  @include tag-color;
+  text-align: left;
+  height: $tag-height;
+  line-height: $tag-height;
+  border-top-right-radius: $tag-border-radius;
+  border-bottom-right-radius: $tag-border-radius;
+  display: inline-block;
+  position: relative;
+  margin-left: $tag-height / 2;
+  margin-right: .25em;
+  margin-bottom: .5em;
+  
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+  }
+
+  &::before {
+    width: $tag-height * 1.5 / 2;
+    border-top: $tag-height / 2 solid transparent;
+    border-bottom: $tag-height / 2 solid transparent;
+    border-right-style: solid;
+    border-right-width: $tag-height / 2;
+    top: 0;
+    left: $tag-height * 1.5 / 2 * -1;
+  }
+  
+  &::after {
+    background-color: #fff;
+    width: $tag-hole-diameter;
+    height: $tag-hole-diameter;
+    border-radius: 50%;
+    top: 50%;
+    left: $tag-height / 2 / 3 * -1;
+    margin-top: $tag-hole-diameter / 2 * -1;
+  }
+}
+
+.tag-label {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  color: white;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.tag--pink {
+  @include tag-color(#e91e63);
+}
+
+.tag--blue {
+  @include tag-color(#2196f3);
+}
+
+.tag--green {
+  @include tag-color(#4caf50);
+}
+
+// Presentational CSS
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500);
+

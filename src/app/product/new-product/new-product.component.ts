@@ -17,6 +17,7 @@ export class NewProductComponent implements OnInit {
   categories$;
   imageUrl;
   showImage= false;
+  dateNow = new Date().constructor().slice(0,21);
 
   constructor(
     private router: Router,
@@ -30,7 +31,7 @@ export class NewProductComponent implements OnInit {
   }
 
   save(product: Product){
-
+      product.date = this.dateNow;
       this.ProductService.create(product);
       console.log(product);
       this.router.navigate(['/'])

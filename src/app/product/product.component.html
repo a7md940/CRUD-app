@@ -1,4 +1,4 @@
-<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+<!-- <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet"> -->
 
 <!------ Include the above in your HEAD tag ---------->
 
@@ -20,22 +20,20 @@
                     
                       <tr data-status="pagado" *ngFor="let product of Products | async">
                       <td>
-                        <div class="media">
+                        <div class="media" style="position: relative;">
                           <a href="#" class="pull-left">
                             <img src="{{product.imageUrl}}" class="media-photo">
                           </a>
                           <div class="media-body">
-                            <span class="media-meta pull-right">{{ product.date }}</span>
-                            <h4 class="title">
-                             {{ product.name }}
-                              <span class="pull-right pagado">{{ product.price | currency:'USD':ture:'1.0-0' }}</span>
-                            </h4>
-                            <p class="summary">{{ product.category }}</p>
-                            <p class="summary">{{ product.sku }}</p>
-                            <div class="pull-right">
-                                <button type='button' class="btn btn-success">update</button>
-                                <button type='button' class="btn btn-secondary">cancel</button>
+                            <h4 class="title">{{ product.name }}</h4>
+
+                            <div class="tag tag--pink">
+                              <span class="pull-right pagado tag-label">{{ product.price | currency:'USD':ture:'1.0-0' }}</span>
                             </div>
+
+                            <p class="summary"><span>Category : </span>{{ product.category }}</p>
+                            <p class="summary"><span>SKU Number : </span>{{ product.sku }}</p>
+                            <span class="media-meta"><span>Date Created : </span>{{ product.date }}</span>
                           </div>
                         </div>
                       </td>

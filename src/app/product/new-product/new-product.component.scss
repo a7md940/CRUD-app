@@ -1,0 +1,11 @@
+#date-container{
+position: relative;
+    .fake-date-input{
+        position: absolute;
+    bottom: 0px;
+    left: 0;
+    border: 0px;
+    height: 38px;
+    padding-left: 16px;
+    }
+}

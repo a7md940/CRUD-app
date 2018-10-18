@@ -1,6 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.css';
 @import '~animate.css/animate.min.css';
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+
+body{
+    
+}
 body .navbar{
     margin-bottom:20px;
 }

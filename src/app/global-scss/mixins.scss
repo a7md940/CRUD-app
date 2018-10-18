@@ -1,0 +1,42 @@
+/* ================================= */
+
+ /*!
+  *  START MIXINS 
+  */
+  
+  @mixin mobile {
+    @media (max-width: 736px){
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media  (min-width:736px ) and (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin fromMidToLarge {
+    @media  (min-width:769px ) {
+        @content;
+    }
+}
+@mixin midScreen {
+    @media  (min-width:769px ) and (max-width: 1200px) {
+        @content;
+    }
+}
+
+
+
+@mixin lgScreen {
+    @media  (min-width: 1200px) {
+        @content;
+    }
+}
+
+ /*!
+  *  END MIXINS 
+  */
+
+/* ================================= */
