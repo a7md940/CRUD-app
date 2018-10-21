@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from './../product/product';
 import { ProductService } from './../product/product.service';
 import * as firebase from 'firebase';
-
+// import * as _ from 'lodash';
 
 @Component({
   selector: 'app-edit-products',
@@ -13,6 +13,7 @@ import * as firebase from 'firebase';
 export class EditProductsComponent implements OnInit {
   Products;
 
+  currentDate = new Date().constructor().slice(0,21);
 
   editProductForm: boolean;
   editedProduct;
@@ -45,6 +46,7 @@ export class EditProductsComponent implements OnInit {
   }
   deleteCancel(){
     this.showDeleteConfirmationModal = false;
+    
   }
 
   deleteProduct(product: Product){
@@ -89,9 +91,13 @@ export class EditProductsComponent implements OnInit {
     this.editedProduct = {};
   }
 
-  cancel(){
+  cancel(product){
     this.editProductForm = false;
+    console.log(product)
+
     this.editedProduct = {};
+    product = {};
+    console.log(product )
   }
 
   show(product){

@@ -12,6 +12,8 @@ import { ProductService } from './product.service';
 export class ProductComponent implements OnInit {
   Products;
 
+  productsList;
+
   newProductForm: boolean = false;
   newProduct: any={};
 
@@ -75,7 +77,8 @@ export class ProductComponent implements OnInit {
 
   show(product){
     this.showImage = true;
-    this.editedProduct = product;
+    this.productsList = product;
+
   }
   hide(){
     this.showImage = false;

@@ -1,4 +1,5 @@
 <div class="table-responsive-xl">
+<!-- 
   <table class="table tables-striped">
 
     <thead>
@@ -37,7 +38,7 @@
   
       </tr>
 
-      <!-- Modal -->
+     // Modal 
       <div *ngIf="showImage && editedProduct.imageUrl == product.imageUrl" class="imgShow">
 
         <div class="image-container">
@@ -71,4 +72,153 @@
   
    
   </table>
+  -->
+
+<h6 class="links"> <span routerLink="" style="cursor:pointer;"> Home </span> > <span> Edit Products</span></h6>
+<div class="edit-table">
+  <div class="table-container">
+    <div class="theader">
+      <div><span>Image</span></div>
+      <div><span>Name</span> </div>
+      <div><span>Category</span></div>
+      <div><span>Price</span></div>
+      <div><span>SKU</span></div>
+      <div><span>Date</span></div>
+      <div><span>Options</span></div>
+    </div>
+    <div class="trow" *ngFor="let product of Products | async">
+
+      <div class="current-product">
+
+        <div class="upload-btn">
+          <img src="{{product.imageUrl}}" alt="{{product.name}}" (click)="show(product)">
+          <input *ngIf="editProductForm && editedProduct.imageUrl == product.imageUrl" 
+          type="file" 
+          (change)="uploadNewImage($event)" 
+          name="imageUrl" 
+          [(ngModel)]="editedProduct.imageUrl"
+          class="animated rubberBand">
+            
+          <div *ngIf="showImage && editedProduct.imageUrl == product.imageUrl" class="imgShow">
+
+              <div class="image-container">
+                <div class="image" >
+                  <img src="{{ editedProduct.imageUrl }}">
+                  <button (click)="hide()" class="rubberBand animated">exit</button>
+                </div>
+              </div>
+            </div>
+
+          <div *ngIf="editProductForm && editedProduct.imageUrl == product.imageUrl" class="container-btn container-one animated rubberBand">
+            <button>
+              <i class="fa fa-upload"></i>
+              
+              <div class="fill-one"></div>
+            </button>
+          </div>
+          
+        </div>
+        <div>
+          {{product.name}}
+          <input *ngIf="editProductForm && editedProduct.imageUrl == product.imageUrl" 
+          type="text" 
+          name="name" 
+          [(ngModel)]="editedProduct.name" 
+          placeholder="{{ editedProduct.name }}"
+          class="animated rubberBand">
+        </div>
+        <div>
+          {{product.category}}
+          <input *ngIf="editProductForm && editedProduct.imageUrl == product.imageUrl" 
+          type="text" 
+          name="category" 
+          [(ngModel)]="editedProduct.category" 
+          placeholder="{{ editedProduct.category }}"
+          class="animated rubberBand">
+        </div>
+        <div>
+          {{product.price}}
+          <input *ngIf="editProductForm && editedProduct.imageUrl == product.imageUrl"
+           type="number"
+           name="price" 
+           [(ngModel)]="editedProduct.price" 
+           placeholder="{{ editedProduct.price }}"
+           class="animated rubberBand">
+        </div>
+        <div>
+          {{product.sku}}
+          <input *ngIf="editProductForm && editedProduct.imageUrl == product.imageUrl" 
+          type="text" 
+          name="sku" 
+          [(ngModel)]="editedProduct.sku" 
+          placeholder="{{ editedProduct.sku }}"
+          class="animated rubberBand">
+        </div>
+        <div>
+          {{product.date}}
+          <input disabled *ngIf="editProductForm && editedProduct.imageUrl == product.imageUrl" 
+          type="text" 
+          name="date" 
+          [ngModel]="currentDate" 
+          #date="ngModel" 
+          placeholder="{{ editedProduct.date }}"
+          class="animated rubberBand">
+        </div>
+
+        <div class="options-buttons">
+            <div>
+              <i class="fa fa-pencil" (click)="updateProduct(product)"></i>
+              <i class="fa fa-trash-o" (click)="deleteProduct(product)"></i>
+            </div>
+            <div *ngIf="editProductForm && editedProduct.imageUrl == product.imageUrl" id="options">
+              <button class="submit" (click)="update(editedProduct)">Submit</button>
+              <button class="cancel" (click)="cancel(editedProduct)">Cancel</button>
+            </div>
+            <div *ngIf="showDeleteConfirmationModal && productWantToDelete.id == product.id" class="confirm-delete">
+                <div class="alert alert-warning">
+                  <p><span>are you sure to delete this product.. ?</span></p>
+                  <button (click)="deleteConfirm(product)" type="button" class="btn btn-danger">Delete</button>
+                  <button (click)="deleteCancel()" type="button" class="btn btn-danger">Cancel</button>
+                </div>
+             </div>
+             
+        </div>
+        
+      </div>
+
+      <div *ngIf="showImage && editedProduct.imageUrl == product.imageUrl" class="imgShow">
+        <div class="image-container">
+          <div class="image" >
+            <img src="{{ editedProduct.imageUrl }}">
+            <button (click)="hide()" class="rubberBand animated">exit</button>
+          </div>
+        </div>
+      </div>
+<!-- 
+      <div class="edited-product">
+
+          <div *ngIf="editProductForm && editedProduct.imageUrl == product.imageUrl">
+            <div><input *ngIf="editProductForm && editedProduct.imageUrl == product.imageUrl" type="text" name="sku" [(ngModel)]="editedProduct.sku" placeholder="{{ editedProduct.sku }}"></div>
+
+            <div><input *ngIf="editProductForm && editedProduct.imageUrl == product.imageUrl" type="text" name="name" [(ngModel)]="editedProduct.name" placeholder="{{ editedProduct.name }}"></div>
+
+            <div><input *ngIf="editProductForm && editedProduct.imageUrl == product.imageUrl" type="text" name="category" [(ngModel)]="editedProduct.category" placeholder="{{ editedProduct.category }}"></div>
+
+            <div><input *ngIf="editProductForm && editedProduct.imageUrl == product.imageUrl" type="number" name="price" [(ngModel)]="editedProduct.price" placeholder="{{ editedProduct.price }}"></div>
+
+            <div><input *ngIf="editProductForm && editedProduct.imageUrl == product.imageUrl" type="date" name="date" [(ngModel)]="editedProduct.date" placeholder="{{ editedProduct.date }}"></div>
+
+            <div><input *ngIf="editProductForm && editedProduct.imageUrl == product.imageUrl" type="file" (change)="uploadNewImage($event)" name="imageUrl" [(ngModel)]="editedProduct.imageUrl"></div>
+
+            <div id="options">
+              <button class="submit" (click)="update(editedProduct)">Submit</button>
+              <button class="cancel" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+
+      </div>
+       -->
+    </div>
+  </div>
 </div>
+</div> 

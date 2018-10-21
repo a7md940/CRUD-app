@@ -1,45 +1,14 @@
-.table-responsive-xl table{
+@import '../global-scss/mixins.scss';
 
-    padding:0px;
-    width: 100%;
-    background: #dfdfde;
-    margin-top: 20px;
-    margin-bottom:20px;
-}
-.table-responsive-xl thead{
-    background:white;
-}
-.table-responsive-xl tr{
-    text-align: center;
-    padding:0px;
 
-}
-
-.table-responsive-xl td,.table-responsive-xl th{
-    padding: 10px 5px;
-    font-size:12px;
-    position: relative;
-}
-
-.table-responsive-xl tr > div{
-    width: 100%;
-    position: relative;
-    left:0px;
-}
-
-.table-responsive-xl tbody:nth-of-type(even){
-    background: white;
-}
-.table-responsive-xl tbody:nth-of-type(odd){
-    background: #f7f7f6;
-}
-
-.table-responsive-xl table:nth-of-type(1) input{
-    width:100px;
-}
 
 #options{
     text-align: center;
+    position: relative;
+    z-index: 9;
+    display:flex;
+    justify-content: center;
+    margin-top:20px;
 }
 
 #options button{
@@ -91,21 +60,21 @@
 .confirm-delete{
     position: absolute;
     width: 253px;
-    top: 58px;
+    top: -106px;
     z-index:10;
 }
 
-.confirm-delete::after{
-    content:'';
-    border-right: transparent solid 15px;
-    border-left: transparent solid 15px;
-    border-top: transparent solid 15px;
-    border-bottom: #FAEBCC solid 15px;
-    position: relative;
-    left: 14%;
-    top: -141px;
-    transform: translateX(-50%);
-}
+// .confirm-delete::after{
+//     content:'';
+//     border-right: transparent solid 15px;
+//     border-left: transparent solid 15px;
+//     border-top: transparent solid 15px;
+//     border-bottom: #FAEBCC solid 15px;
+//     position: relative;
+//     left: 14%;
+//     top: -141px;
+//     transform: translateX(-50%);
+// }
 
 /** start add product form **/
 
@@ -193,4 +162,298 @@
 
 .image img{
     width:100%;
+}
+
+
+// upload button 
+
+.container-btn button {
+	font-family: Helvetica, sans-serif;
+	font-weight: 100;
+    color: #fff;
+    
+    @include mobile {
+        width:233px !important;
+        bottom: 34px !important
+    }
+    
+
+}
+
+input[type=file]{
+    @include mobile{
+        width:325px !important;
+    }
+
+    @include fromMidToLarge{
+        bottom:-17px;
+    }
+}
+
+
+.container-btn {
+	text-align: center;
+	position: relative;
+	width: 100%;
+	margin: 0 auto;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.container-btn button {
+	position: relative;
+	height: 50px;
+	width: 162px;
+	border: 0;
+	border-radius: 5px;
+	text-transform: uppercase;
+	font-size: 1.1em;
+	letter-spacing: 0.2em;
+	overflow: hidden;
+	box-shadow: 0 4px 12px 0 rgba(152, 160, 180, 10);
+    z-index: -2;
+    outline: none;
+
+    @include fromMidToLarge{
+        bottom:40px;
+    }
+}
+
+
+.fill-one {
+	position: absolute;
+	background-image: linear-gradient(to right, #E040FB, #00BCD4);
+	height: 70px;
+	width: 420px;
+	border-radius: 5px;
+	margin: -40px 0 0 -140px;
+	z-index: -1;
+	transition: all 0.4s ease;
+}
+
+.container-one:hover .fill-one {
+	-webkit-transform: translateX(100px);
+	-moz-transform: translateX(100px);
+	transform: translateX(100px);
+}
+
+
+
+// end upload button
+
+// start edite-table
+.links{
+    padding: 15px;
+    background: #efefef;
+    color: #a5a5a5;
+}
+.edit-table{
+    
+    .table-container{
+        display: flex;
+        flex-direction: column;
+
+        .theader{
+            display:flex;
+            justify-content: space-between;
+            margin-bottom: 1em;
+            margin-top:1em;
+            font-size: 18px;
+            font-weight: bold;
+
+            @include mobile{
+                display:none;
+            }
+            & > div{    
+                text-align: center;
+                flex-basis: 14.2%;
+
+                &:nth-of-type(1){
+                    flex-basis: 5%;
+                }
+                span{
+                    display: block;
+                    text-align: center;
+                }
+            }
+        }
+
+        .trow{
+            display:flex;
+            flex-direction: column;
+            margin: 5px 0;
+            &:nth-of-type(even) .current-product{
+                background: #f9f9f9;
+            }
+            .current-product{
+                
+                display:flex;
+                justify-content: space-between;
+                text-align: center;
+                
+                .upload-btn{
+                    position: relative;
+                    overflow: hidden;
+                    input[type=file]{
+                        opacity: 0;
+                        position: relative;
+                        z-index: 10;
+                        left: -89px;
+                        cursor: pointer;
+                        height: 66px;
+                        cursor: pointer;
+                        &:hover + .container-one .fill-one {
+                            -webkit-transform: translateX(100px);
+                            -moz-transform: translateX(100px);
+                            transform: translateX(100px);
+                        }
+
+                        @include mobile{
+                            width: 335px !important;
+                            top:38px;
+                            
+                        }
+                        
+                    }
+                    & span{
+                        width: 100%;
+                        height: 27px;
+                        background: #ccc;
+                        border: 2px solid blue;
+                        text-align: center;
+                        position: absolute;
+                        left: 0px;
+                        bottom: -4px;
+                        z-index: 1;
+                    }
+
+                    @include fromMidToLarge{
+                        input[type=file]{
+                            left: -44px;
+                            width: 115px
+                        }
+
+                        .container-btn{
+                            width:50px;
+                            cursor: pointer;
+                            button{
+                                padding:0px;
+                                width:50px;
+
+                                i{
+                                    margin:0px;
+                                    padding:0px;
+                                }
+                            }
+                        }
+
+                    }
+                }
+                
+                & > div{
+                    flex-basis: 14.2%;
+                    font-size: 15px;
+                    align-self: center;
+
+                    input:not([type=file]){
+                        width: 100px;
+                        display: block;
+                        margin: 0 auto;
+                        padding: 5px;
+                        border-radius: 5px;
+                        border: solid 1px #a9a9a9;
+                        margin-top: 15px;
+                        outline: none;
+                        font-size: 13px;
+
+                        &[name=date]{
+                            width:100%;
+                        }
+                    }
+                    i{
+                        font-size: 20px;
+                        margin: 0 5px;
+                        cursor: pointer;
+                    }
+                    .fa-pencil{
+                        color: green;
+                    }
+
+                    .fa-trash-o{
+                        color: red;
+                    }
+                }
+
+                // div contain the inage
+                & > div:nth-of-type(1){
+                    flex-basis: 5%; 
+                    img{
+                        width:100%;
+                    }
+                }
+
+                .options-buttons{
+                    display:flex;
+                    flex-direction: column;
+                    position: relative;
+
+                    .confirm-delete{
+                        position: absolute;
+                        width: 253px;
+                        top: -112px;
+                        right: 56px;
+                        z-index: 10;
+                        
+
+                        .alert.alert-warning{
+                            width: 300px;
+                        }
+                    }
+
+                    @include mobile{
+                        .confirm-delete{
+                            top: -141px;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            .alert.alert-warning{
+                                width:100%;
+
+                                button:not(:first-of-type){
+                                    margin-left: 8px;
+                                }
+                            }
+                        }
+                    }
+                }
+                @include mobile{
+                    flex-direction: column;
+                    padding: 7px;
+                    & > div{
+                        flex-basis: 100%;
+                        width: 100%;
+                        font-size: 18px;
+                        &:not(:last-child){
+                            border-bottom: 1px solid #ccc;
+                        }
+                        
+                        &:nth-of-type(1){
+                            width:235px;
+                            margin-top: 7px;
+                            margin-bottom: 5px;
+                        }
+
+                        input[name=date],input{
+                            width: 90% !important;
+                            margin-top:0px !important;
+                            margin-bottom: 16px !important;
+                        }
+                    }
+                }
+            }
+
+            .edited-product > div{
+                display:flex;
+            }
+        }
+    }
 }

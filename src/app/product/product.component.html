@@ -5,9 +5,11 @@
 
 
 <!--  -->
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-  
+
+<!-- old product grid -->
+<!--   
       <section class="content">
         <h1>Products</h1>
         <div class="col-md-12 ">
@@ -47,6 +49,68 @@
           
         </div>
       </section>
-      
+       -->
+     
+     
+       <section class="products">
+        <h1 class="text-center mb-5 animated bounceIn">Products List</h1>
+        <div class="products-container">
+
+          <div class="side-bar">
+            <aside>
+              <ul>
+                <li>All</li>
+                <li>Shirts</li>
+                <li>Shoes</li>
+              </ul>
+            </aside>
+
+          </div>
+          <div class="product-list">
+            <div *ngFor="let product of Products | async" class="product-item">
+
+              <div class="product-image">
+                  <img src="{{product.imageUrl}}" alt="{{product.name}}" (click)="show(product)">
+                  <p class="price">
+                      <strong>  {{product.price | currency:'USD':'$':'1.0-0' }} </strong>
+                  </p>
+              </div>
+
+              <!-- modal showing product image -->
+              <div *ngIf="showImage && product.imageUrl == productsList.imageUrl">
+                  <div class="modal-show-image">
+                    <div>
+                      <div>
+                          <img src="{{ product.imageUrl }}" alt="">
+                          <div class="close-image animated rubberBand" (click)="hide()">
+                              <i class="fa fa-close"></i>
+                          </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                  {{showImage}}
+              </div>
+              
+              <div class="product-desc">
+                <p class="name">
+                  <strong>{{product.name}}</strong>
+                </p>
+                <p>
+                <strong>{{product.category}}</strong>
+                </p>
+                
+                <p>
+                <strong>{{product.sku}}</strong>
+                </p>
+                <p class="date">
+                <strong>{{product.date}}</strong>
+                </p>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </div>

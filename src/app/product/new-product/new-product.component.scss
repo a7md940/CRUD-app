@@ -1,5 +1,8 @@
+@import '../../global-scss/mixins.scss';
+
 #date-container{
 position: relative;
+width:95%;
     .fake-date-input{
         position: absolute;
     bottom: 0px;
@@ -9,3 +12,92 @@ position: relative;
     padding-left: 16px;
     }
 }
+
+#image-url-input{
+    width: 200px;
+    height: 50px;
+    z-index: 9999;
+    position: relative;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+
+    &:hover + .container-btn .fill-one {
+        -webkit-transform: translateX(100px);
+        -moz-transform: translateX(100px);
+        transform: translateX(100px);
+    }
+}
+
+
+// upload button
+
+.container-btn button {
+	font-family: Helvetica, sans-serif;
+	font-weight: 100;
+    color: #fff;
+    
+    @include mobile {
+        width:233px !important;
+        bottom: 34px !important
+    }
+    
+
+}
+
+input[type=file]{
+    @include mobile{
+        width:325px !important;
+    }
+
+    @include fromMidToLarge{
+        bottom:-17px;
+    }
+}
+
+
+.container-btn {
+	text-align: center;
+	position: absolute;
+	width: 100%;
+	margin: 0 auto;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.container-btn button {
+	position: absolute;
+    height: 50px;
+    left: 0px;
+    width: 200px;
+    border: 0;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-size: 1.1em;
+    letter-spacing: 0.2em;
+    overflow: hidden;
+    box-shadow: 0 4px 12px 0 #98a0b4;
+    z-index: -2;
+    outline: none;
+    bottom: 51px;
+    top: -49px;
+}
+
+
+.fill-one {
+	position: absolute;
+	background-image: linear-gradient(to right, #E040FB, #00BCD4);
+	height: 70px;
+	width: 420px;
+	border-radius: 5px;
+	margin: -40px 0 0 -140px;
+	z-index: -1;
+	transition: all 0.4s ease;
+}
+
+.container-one:hover .fill-one {
+	-webkit-transform: translateX(100px);
+	-moz-transform: translateX(100px);
+	transform: translateX(100px);
+}
+
